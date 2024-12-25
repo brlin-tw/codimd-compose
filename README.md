@@ -10,8 +10,8 @@ Launch a [CodiMD](https://github.com/hackmdio/codimd) service instance that sati
 The following prerequisites must be met in order to use this product:
 
 * The service host:
-    * Must have Docker installed.
-    * Must have access to the Docker Hub container registry service.
+    + Must have Docker installed.
+    + Must have access to the Docker Hub container registry service.
 * You must have:
     + Access to the service host's text terminal.
     + Permission to run Docker commands on the service host.

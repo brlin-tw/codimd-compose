@@ -22,3 +22,6 @@
 /.reuse/ -export-ignore
 /.reuse/* export-ignore
 /.reuse/dep5 -export-ignore
+
+# Keep the sample environment file for instantiation reference
+/.env.sample -export-ignore

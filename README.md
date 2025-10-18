@@ -1,4 +1,4 @@
-# Docker deployment of CodiMD
+# Compose container deployment of CodiMD
 
 Launch a [CodiMD](https://github.com/hackmdio/codimd) service instance that satisfies your requirement in seconds!
 

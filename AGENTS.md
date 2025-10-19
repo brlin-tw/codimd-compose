@@ -23,6 +23,7 @@ This also applies to positional parameters, e.g., use `${1}` instead of `$1`.
 
 ### Message reporting
 
+* If the program's output is intended to be used as input for other programs, avoid implementing non-error messages at all.
 * Use `printf` instead of `echo` for formatted output.
 * Prepend log level tags in the following format(except for help text):
     + `Info:`
@@ -34,10 +35,6 @@ This also applies to positional parameters, e.g., use `${1}` instead of `$1`.
 ### Linting
 
 Use ShellCheck for linting.
-
-### Function arguments
-
-Use `local var="$1"; shift` to assign function arguments to local variables.  This allows cleaner diffs when adding or removing arguments.
 
 ### Defensive interpreter behavior
 
@@ -61,6 +58,28 @@ set -o errtrace  # Ensure the error trap is inherited
 * Use the `test` shell built-in for conditional expressions.  For example, use `if test -f "file"` instead of `if [[ -f "file" ]]`.
 
   The only exception is when using regex matching, which requires `[[ ... ]]`.  When doing so always define a regex_pattern variable instead of embedding the regex directly in the conditional expression.
+
+### Functions
+
+* Use `function_name(){ ... }` syntax for defining functions. Do not use the `function` keyword.
+* Always use `local` for function-local variables.
+* Do not use global variables inside functions. Instead, pass them as arguments.
+* Use the following pattern to retrieve function arguments:
+
+    ```bash
+    local var="${1}"; shift
+    ```
+
+  Always use `${1}` parameter expansion and append `shift` command even when the function only has one parameter. This allows cleaner diffs when adding or removing arguments.
+
+* Validate input parameters at the beginning of functions
+* Always use `return` to return an exit status from functions.  Only use the `exit` builtin in the `init`/`main` function as it is the main logic of the script.
+* Place all non `init`/`main` functions _after_ the `init`/`main` function in the script. This allows script readers to access the main script logic easily.
+* Use imperative tense for function names.
+
+### Error Handling
+
+* Always check the exit status of commands and handle errors appropriately, don't rely solely on the ERR trap.
 * Do not use AND/OR lists syntax.
 
 ### Script template
@@ -77,6 +96,7 @@ The following script should be used for script creation, rewrites, and style ref
 init(){
     printf \
         'Info: Operation completed without errors.\n'
+    exit 0
 }
 
 printf \

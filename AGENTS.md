@@ -53,11 +53,45 @@ If the script contains functions, also include:
 set -o errtrace  # Ensure the error trap is inherited
 ```
 
-### Conditional expressions
+### Conditional constructs
+
+* When using `if...else` constructs, always check the incorrect condition first.  For example:
+
+    ```bash
+    if ! is_port_valid "${user_input}"; then
+        printf \
+            'Error: Invalid port number, please try again.\n' \
+            1>&2
+        return 1
+    else
+        # Do something when the condition is expected
+    fi
+    ```
 
 * Use the `test` shell built-in for conditional expressions.  For example, use `if test -f "file"` instead of `if [[ -f "file" ]]`.
 
   The only exception is when using regex matching, which requires `[[ ... ]]`.  When doing so always define a regex_pattern variable instead of embedding the regex directly in the conditional expression.
+
+### Pattern matching
+
+* Use the `[[ ... ]]` construct for validating user inputs when applicable.
+
+  Store the regex pattern in a `regex_` prefix variable instead of embedding it in the conditional expression.  For example:
+
+   ```bash
+    local regex_digits='^[[:digit:]]+$'
+    if [[ "${user_input}" =~ ${regex_digits} ]]; then
+        # Do something when the input is a number
+    fi
+    ```
+
+### Passing data to subprocesses
+
+* Using the Here Strings syntax (`<<<`) is preferred when passing small amounts of data to subprocesses.  For example:
+
+    ```bash
+    grep 'pattern' <<< "${data_variable}"
+    ```
 
 ### Functions
 

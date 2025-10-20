@@ -9,7 +9,7 @@ Launch a [CodiMD](https://github.com/hackmdio/codimd) service instance that sati
 
 ## Prerequisites
 
-The following prerequisites must be met in order to use this product:
+The following prerequisites must be met in order to make use of this product:
 
 * The service host:
     + Must have Docker installed.

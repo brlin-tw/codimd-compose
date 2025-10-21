@@ -89,9 +89,11 @@
 # Don't track continuous integration virtual environments
 /continuous-integration/venv/
 
-# Avoid checking in the environment file, which may contain sensitive
-# information
+# Don't track instantiated config files
 /.env
+/compose.yml
+/nginx.conf.d/codimd.conf
 
-# Do track sample environment file
-!/.env.sample
+# Don't track SSL/TLS assets
+/ssl/*.crt
+/ssl/*.key

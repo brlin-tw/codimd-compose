@@ -19,6 +19,24 @@ The following prerequisites must be met in order to make use of this product:
     + Access to the service host's text terminal.
     + Permission to run Docker commands on the service host.
 
+## Usage
+
+Follow the instructions below to deploy this product:
+
+1. Download a copy of the product release archive from [the Releases page](https://gitlab.com/brlin/codimd-compose).
+1. Extract the product release archive using your preferred archive manipulation application/utility.
+1. In a text terminal, change the working directory to the extracted release archive by running the following command(with the version string placeholder replaced to the correct values):
+
+    ```bash
+    cd /path/to/codimd-compose-X.Y.Z
+    ```
+
+1. Run the following command to create and start the CodiMD service containers:
+
+    ```bash
+    docker compose up -d
+    ```
+
 ## Reference
 
 * [Docker Deployment - HackMD](https://hackmd.io/s/codimd-docker-deployment)  
@@ -27,6 +45,10 @@ The following prerequisites must be met in order to make use of this product:
   The configuration documentation of the CodiMD software.
 * [environment variables - Docker-compose env file not working - Stack Overflow](https://stackoverflow.com/questions/48495663/docker-compose-env-file-not-working)  
   Explains why the .env file's environment variable definition does not apply to individual containers automatically.
+* [nginx - Official Image | Docker Hub](https://hub.docker.com/_/nginx/)  
+  Explains how to use the official nginx container image.
+* [Appendix:Basic English word list - Wiktionary, the free dictionary](https://en.wiktionary.org/wiki/Appendix:Basic_English_word_list)  
+  Used to select common words for generating random passphrases.
 
 ## Licensing
 

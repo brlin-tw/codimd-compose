@@ -25,8 +25,6 @@ services:
     env_file: .env
     depends_on:
       - database
-    ports:
-      - 127.0.0.1:3000:3000
     volumes:
       - upload-data:/home/hackmd/app/public/uploads
     restart: always
@@ -43,13 +41,22 @@ services:
       - database-data:/var/lib/postgresql/data
     restart: always
 
+  rproxy:
+    image: nginx:alpine-slim
+    restart: always
+    ports:
+      #- 80:80
+      - __CODIMD_HTTPS_PORT__:443
+    volumes:
+      - ./nginx.conf.d:/etc/nginx/conf.d
+      - ./ssl:/etc/ssl:ro
+    init: true
+
   plantuml:
     container_name: codimd-plantuml
     hostname: codimd-plantuml
     image: plantuml/plantuml-server:jetty
     restart: always
-    ports:
-      - 127.0.0.1:8080:8080
 
 volumes:
   database-data: {}

@@ -1,0 +1,10 @@
+version = 1
+SPDX-PackageName = "Docker deployment of CodiMD"
+SPDX-PackageSupplier = "Issues · 林博仁 Buo-ren, Lin / Docker deployment of CodiMD · GitLab <https://gitlab.com/brlin/codimd-docker/-/issues>"
+SPDX-PackageDownloadLocation = "https://gitlab.com/brlin/codimd-docker"
+
+[[annotations]]
+path = ["**README.md", "**/README.md", "**/AGENTS.md"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2025 林博仁(Buo-ren, Lin) <Buo.Ren.Lin@gmail.com>"
+SPDX-License-Identifier = "CC-BY-SA-4.0+"

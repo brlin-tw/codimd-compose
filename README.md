@@ -31,11 +31,77 @@ Follow the instructions below to deploy this product:
     cd /path/to/codimd-compose-X.Y.Z
     ```
 
+1. Run the following command to initialize the service:
+
+    ```bash
+    ./setup.sh
+    ```
+
+   You can customize the setup program's behaviors by setting environment variables before/when running it.  See the [Environment variables that can customize the setup program's behaviors](#environment-variables-that-can-customize-the-setup-programs-behaviors) section for more information.
 1. Run the following command to create and start the CodiMD service containers:
 
     ```bash
     docker compose up -d
     ```
+
+### Environment variables that can customize the setup program's behaviors
+
+[The setup program](setup.sh) can be customized by setting the following environment variables before/when running it:
+
+### CODIMD_DOMAIN
+
+Specify the domain name/IP address to be used by the service.
+
+**Default value:** (null) (The value be asked interactively during the setup process.)  
+**Example values:**
+
+* `codimd.example.org`
+* `localhost`
+* `192.168.128.10`
+* `127.0.0.1`
+
+### CODIMD_HTTPS_PORT
+
+Specify the HTTPS port number to be used by the service.
+
+**Default value:** (null) (The value will be asked interactively during the setup process.)  
+**Example values:**
+
+* `443`  
+  When this port is used, the `80` port will also be published as the HTTP service.
+* `8443`
+
+### CODIMD_GENERATE_SELFSIGNED_CERTIFICATE
+
+Specify whether to generate self-signed TLS certificates for the service.
+
+**Default value:** (null) (The value will be asked interactively during the setup process.)  
+**Example values:**
+
+* `true`  
+  Generate self-signed TLS certificates.
+* `false`  
+  Do not generate self-signed TLS certificates.  The user has to provide valid TLS certificates manually before launching the service.
+
+### CODIMD_POSTGRESQL_PASSWORD
+
+The password of the PostgreSQL database user account used by the CodiMD service.
+
+**Default value:** (null) (The value will be randomly generated during the setup process.)  
+**Example values:** (These are only examples; do not use them directly!)
+
+* `p@ssw0rd!`
+* `do not use this passphrase`
+
+### CODIMD_SESSION_SECRET
+
+The session secret used by the CodiMD service.
+
+**Default value:** (null) (The value will be randomly generated during the setup process.)
+**Example values:** (These are only examples; do not use them directly!)
+
+* `a9f5b6c7d8e0f1a2b3c4d5e6f7g8h9i0`
+* `do not use this passphrase`
 
 ## Reference
 
